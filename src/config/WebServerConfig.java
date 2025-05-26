@@ -6,7 +6,7 @@ import java.nio.file.Paths;
 public class WebServerConfig {
 		private static final int PORT = 8080;
 
-		private static final Path WEB_ROOT = Paths.get("webroot");
+		private static final Path WEB_ROOT = Paths.get("public");
 
 		private static final String CRLF = "\r\n";
 
