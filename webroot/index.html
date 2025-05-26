@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Simple Web Server</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background-color: #f4f4f4; color: #333; }
+        h1 { color: #0056b3; }
+        .container { background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Welcome to My Simple Java HTTP Server!</h1>
+    <p>This is the <code>index.html</code> file being served dynamically.</p>
+    <p>You successfully requested the default page.</p>
+    <p>Current server time: <span id="server-time"></span></p>
+</div>
+<script>
+    // A little JavaScript to update the time if needed, though this is static HTML
+    // In a real app, this would be updated on the server side or with AJAX
+    document.getElementById('server-time').innerText = new Date().toLocaleString();
+</script>
+</body>
+</html>
