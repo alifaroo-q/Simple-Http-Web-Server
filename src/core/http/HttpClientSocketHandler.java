@@ -18,7 +18,7 @@ public class HttpClientSocketHandler implements Runnable {
 		public void run() {
 				try (
 								BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-								OutputStream out = clientSocket.getOutputStream();
+								OutputStream out = clientSocket.getOutputStream()
 				) {
 
 						HttpRequest request = HttpRequest.parse(in);
@@ -34,10 +34,21 @@ public class HttpClientSocketHandler implements Runnable {
 								return;
 						}
 
+						if (request.getPath().startsWith("/public")) {
+								String path = request.getPath().substring("/public".length());
+
+								if (path.isEmpty()) {
+										response.sendNotFound();
+										return;
+								}
+
+								var absolutePath = Paths.get(WEB_ROOT.toAbsolutePath().toString(), path);
+								response.serveFile(absolutePath);
+								return;
+						}
+
 						switch (request.getPath()) {
 								case "/":
-										response.sendGet("Hello, World!", "text/plain");
-										return;
 								case "/index.html":
 										response.serveFile(WEB_ROOT.resolve("index.html"));
 										return;
